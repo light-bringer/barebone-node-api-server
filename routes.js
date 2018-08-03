@@ -1,7 +1,12 @@
 const express = require('express')
 , config = require(__dirname + '/config')
 , appDir = config.appDir
-, router = express.Router()
+, router = express.Router();
+
+const calculus = require(appDir + 'app/controllers/codebase');
 
 
-module.exports = router
+router.get('/calculus/lastbuild/status', calculus.lastbuild);
+
+
+module.exports = router;
