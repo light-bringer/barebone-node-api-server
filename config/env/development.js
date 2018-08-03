@@ -4,10 +4,10 @@ module.exports = {
       host: '127.0.0.1'
     },
     database: {
-      name: "test",
+      name: "hyperverge",
       host: "localhost",
       port: "27017",
-      path : "mongodb://localhost:27017/test"
+      path : "mongodb://localhost:27017/hyperverge"
     },
     projectName : 'barebone-node-api-server'
   };
