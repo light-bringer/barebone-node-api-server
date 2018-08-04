@@ -9,6 +9,7 @@ const release = require(appDir + 'app/controllers/release-service');
 
 router.get('/calculus/lastbuild/status', calculus.lastbuild);
 router.get('/release', release.getAllReleases);
+router.get('/release/last', release.getLastRelease);
 
 
 module.exports = router;

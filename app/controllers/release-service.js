@@ -29,6 +29,23 @@ module.exports.getAllReleases = (req, res, next) => {
     res.json(results);
 }
 
+module.exports.getLastRelease = (req, res, next) => {
+    let dataobj = releasemodel.get();
+    let codebase, build;
+    if (_.isNil(req.headers.codebase)) {
+        codebase = null;
+        res.status(500).json({message : "Select CODEBASE"});
+        next();
+    }
+    else {
+        codebase = req.headers.codebase;
+    }
+
+    let results = (search(dataobj, codebase, build));
+
+    res.json(results[0]);
+}
+
 
 let search = (obj, codebase, build)=> {
     let searchobj = {}
