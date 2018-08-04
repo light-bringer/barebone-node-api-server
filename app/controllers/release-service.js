@@ -6,7 +6,7 @@ const Q = require('q')
   , appDir = config.appDir;
 
 const releasemodel = require('../models/release')
-, utils = require(appDir + 'utils.js');
+, utils = require(appDir + 'app/utils');
 
 module.exports.getAllReleases = (req, res, next) => {
     let dataobj = releasemodel.get();
