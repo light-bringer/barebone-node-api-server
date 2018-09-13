@@ -14,23 +14,28 @@
     'city': "MYS",
     'time': "21.45"
   },
-  'booked' : 12
+  'duration': '2 Hours',
+  'bookings' : [
+    {
+      date : 21-Dec-1993,
+      seat : 10
+    }
+  ]
 }
-
 */
 
-const Q = require('q')
-  , _ = require('lodash')
-  , config = require(__dirname + '/../../config')
-  , appDir = config.appDir
-  , collectionName = 'bus';
+import { defer } from 'q';
+import { isNil } from 'lodash';
+const config = require(__dirname + '/../../config');
+const appDir = config.appDir;
+const collectionName = 'bus';
 
 
-module.exports.add = (busObj, options) => {
-    let q = Q.defer()
+export function add(busObj, options) {
+    let q = defer()
     , db = options.db;
   
-    if(_.isNil(db)) {
+    if(isNil(db)) {
       console.error("Db object is undefined or null");
       q.reject("SOMETHING_WENT_WRONG");
       return q.promise;
@@ -48,8 +53,8 @@ module.exports.add = (busObj, options) => {
   
 }
 
-module.exports.get = (...args) => {
-    let q = Q.defer()
+export function get(...args) {
+    let q = defer()
     , options = {}
     , queryOption = {}
     , selectionCriteria = {};
@@ -72,12 +77,12 @@ module.exports.get = (...args) => {
   
     let db = options.db;
   
-    if(_.isNil(db)) {
+    if(isNil(db)) {
       console.error("DB object is undefined or null");
       q.reject("SOMETHING_WENT_WRONG");
       return q.promise;
     }
-    if(_.isNil(selectionCriteria))
+    if(isNil(selectionCriteria))
       selectionCriteria = {};
   
     db.collection(collectionName).find(selectionCriteria, queryOption).toArray((err,docs) => {
