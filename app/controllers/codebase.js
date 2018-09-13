@@ -148,6 +148,11 @@ let showlastrequest = (req, res, next)=> {
       res.json(hardcodedoutput);    
 }
 
+let history = (req, res, next)=> {
+
+}
+
 module.exports = {
-    lastbuild : showlastrequest
+    lastbuild : showlastrequest,
+    history : null
 }
